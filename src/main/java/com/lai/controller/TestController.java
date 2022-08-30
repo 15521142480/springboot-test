@@ -1,40 +1,26 @@
 package com.lai.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lai.common.util.HttpConnection;
-import com.lai.common.util.RequestUtils;
-import com.lai.common.util.StringUtils;
-import com.lai.entity.generator.User;
-import com.lai.entity.sys.UserBean;
-import com.lai.mapper.generator.UserMapper;
-import com.lai.service.UserService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @Api(tags = "测试模块")
-@RequestMapping("test/")
+@RequestMapping("pc/test/")
 public class TestController {
 //
 //    @Autowired

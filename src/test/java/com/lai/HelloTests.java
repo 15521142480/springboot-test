@@ -1,3 +1,5 @@
+package com.lai;
+
 import com.lai.common.util.DateUtils;
 
 public class HelloTests {

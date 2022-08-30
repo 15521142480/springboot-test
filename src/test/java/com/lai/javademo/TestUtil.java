@@ -1,3 +1,5 @@
+package com.lai.javademo;
+
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.HashMap;

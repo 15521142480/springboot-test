@@ -65,8 +65,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
 
         // 全局配置：忽略url
-        web.ignoring().antMatchers("/test/**");
+        web.ignoring().antMatchers("/pc/**");
         web.ignoring().antMatchers("/mobile/**");
+        web.ignoring().antMatchers("/websocket/**");
         web.ignoring().antMatchers("/upload/**");
     }
 

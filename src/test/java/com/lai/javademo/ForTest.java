@@ -1,3 +1,4 @@
+package com.lai.javademo;
 
 import com.lai.common.enums.SysCarBlackListEnum;
 

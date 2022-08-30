@@ -1,26 +1,83 @@
+
+server:
+  port: 7075
+  servlet:
+    context-path: /51-music
+  # http://localhost:7075/51-music/swagger-ui.html
+
 # ================ spring 配置
 spring:
   datasource:
 #    url: jdbc:mysql://127.0.0.1:3306/51-music?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&useSSL=false # MySQL在高版本需要指明是否进行SSL连接 解决则加上 &useSSL=false
 #    username: root
 #    password: 123456
-    url: jdbc:mysql://47.111.71.133/:3306/51-music?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&useSSL=false # MySQL在高版本需要指明是否进行SSL连接 解决则加上 &useSSL=false
+    url: jdbc:mysql://106.15.42.115/:3306/51-music?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&useSSL=false # MySQL在高版本需要指明是否进行SSL连接 解决则加上 &useSSL=false
     username: root
     password: w2570078967
     driver-class-name: com.mysql.jdbc.Driver
+
   resources:
     static-locations: file:${static.web.images-path},file:${static.web.packages-path},classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+
   jpa:
     show-sql: true
     properties:
       hibernate:
         format_sql: true
-server:
-  port: 8083
-  servlet:
-    context-path: /51-music
-  # http://localhost:8083/51-music/swagger-ui.html
 
+  jackson:
+    # 默认使用jackson解析,格式化返回前端的时间
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  redis:
+    # Redis服务器地址
+    host: 106.15.42.115
+    # 端口
+    port: 6379
+    # 密码
+    password:
+    # Redis数据库索引（默认为0）
+    database: 1
+    # 连接超时时间（毫秒）
+    timeout: 5000
+    jedis:
+      pool:
+        #连接池最大连接数（使用负值表示没有限制）
+        max-active: 100
+        # 连接池中的最小空闲连接
+        max-idle: 10
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 100000
+
+  # RabbitMQ服务配置
+  rabbitmq:
+    # guest用户被限制,只能通过localhost(127.0.0.1)访问, 在此条件下不建议修改guest改为远程(ip)登陆
+#    host: 127.0.0.1
+#    port: 5672
+#    username: guest
+#    password: guest
+    host: 192.168.2.12
+    port: 5672
+    username: ygnet
+    password: ygnet@123
+    listener:
+      simple:
+        # 重试机制
+        retry:
+          # 强力建议开启重启机制: 避免如果忘记了ACK,当Consumer退出时候,Message会一直重新分发,会占用越来越多的内容,严重则导致内存泄漏; (虽然可以通过异常捕获或异常捕获+手动确认解决, 但还是建议开启)
+          enabled: true # 是否开启消费者重试
+          max-attempts: 3 # 最大重试次数
+          initial-interval: 5000ms # 重试间隔时间（单位毫秒）
+          max-interval: 1200000ms # 重试最大时间间隔（单位毫秒）
+          multiplier: 2 # 间隔时间乘子，间隔时间*乘子=下一次的间隔时间，最大不能超过设置的最大间隔时间
+
+# elasticsearch 配置
+#elasticsearch:
+#  # es ip
+#  host: localhost
+#  # es 服务端口
+#  port: 9200
 
 # httpClient 广东警务云大数据接口
 gdjwy:
@@ -46,7 +103,7 @@ static:
 
 # ================= 网易云接口
 wangyiyun-music:
-    # base-path: http://47.111.71.133:3000
+    # base-path: http://106.15.42.115:3000
     # music-song: https://music.163.com/song/media/outer/url?id=${id}.mp3
 
 

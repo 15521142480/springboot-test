@@ -33,7 +33,7 @@ import java.util.Map;
  */
 @RestController
 @Api(tags = "上传文件模块模块")
-@RequestMapping(value = "/upload")
+@RequestMapping(value = "pc/upload")
 public class UploadController {
 
 

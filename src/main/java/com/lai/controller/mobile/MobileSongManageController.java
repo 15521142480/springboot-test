@@ -76,4 +76,50 @@ public class MobileSongManageController {
     }
 
 
+    @PostMapping("/getLyricById")
+    @ApiOperation(value = "获得对应音乐的歌词", notes = "")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "id", value = "音乐id"),
+    })
+    public Object getLyricById(HttpServletRequest request){
+
+        Map<String, Object> params = RequestUtils.getParamsByRequest(request);
+        Map<String, Object> resultMap = new HashMap<>();
+        int id = StringUtils.getNumByObject(params.get("id"));
+
+        String api = WyyUtils.getLyricById(id);
+        String resultDataStr = HttpUtils.doGet(api);
+        // JSONObject data = JSON.parseObject(resultData);
+        Map<String, Object> resultData = JSONObject.parseObject(resultDataStr, Map.class);
+
+        resultMap.put("data", resultData);
+        resultMap.put("resultCode", "200");
+
+        return resultMap;
+    }
+
+
+    @PostMapping("/getCommentById")
+    @ApiOperation(value = "可获得该音乐的所有评论", notes = "")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", dataType = "String", name = "id", value = "音乐id"),
+    })
+    public Object getCommentById(HttpServletRequest request){
+
+        Map<String, Object> params = RequestUtils.getParamsByRequest(request);
+        Map<String, Object> resultMap = new HashMap<>();
+        int id = StringUtils.getNumByObject(params.get("id"));
+
+        String api = WyyUtils.getCommentById(id);
+        String resultDataStr = HttpUtils.doGet(api);
+        // JSONObject data = JSON.parseObject(resultData);
+        Map<String, Object> resultData = JSONObject.parseObject(resultDataStr, Map.class);
+
+        resultMap.put("data", resultData);
+        resultMap.put("resultCode", "200");
+
+        return resultMap;
+    }
+
+
 }

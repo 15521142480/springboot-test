@@ -2,7 +2,6 @@ package com.lai.config.security.entity;
 
 import com.lai.entity.generator.User;
 import com.lai.entity.sys.SysRoleBean;
-import com.lai.entity.sys.UserBean;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;

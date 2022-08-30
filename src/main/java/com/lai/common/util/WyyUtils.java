@@ -14,7 +14,7 @@ public class WyyUtils {
 
 
     // ====== 网易云接口
-    private static final String basePath = "http://47.111.71.133:3000";
+    private static final String basePath = "http://106.15.42.115:3000";
 
    // ====== 根据网易云的音乐id获取该歌曲地址
     private static String getSongById (int musicId) {
@@ -72,6 +72,19 @@ public class WyyUtils {
         String playNewSongListApi = "/personalized/newsong";
         return basePath + playNewSongListApi;
     }
+
+    // 调用此接口 , 传入音乐 id 可获得对应音乐的歌词
+    public static String getLyricById(int id) {
+        String url = "/lyric?id=" + id;
+        return basePath + url;
+    }
+
+    // 调用此接口 , 传入音乐 id 和 limit 参数 , 可获得该音乐的所有评论
+    public static String getCommentById(int id) {
+        String url = "/comment/music?id=" + id;
+        return basePath + url;
+    }
+
 
     /**
      * 歌手相关
